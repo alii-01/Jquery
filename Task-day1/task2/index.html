@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cuda</title>
+    <link rel="shortcut icon" href="./assets/images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <script src="js/jquery-3.6.0.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $(".section").css({ padding: "10px", border: "1px solid black" })
+
+            $(".b").not($(".b").eq(0)).hide();
+            $(".section").click(function () {
+
+                $(".b").slideUp();
+          
+
+                console.log("check if class exist", $(this).find('i').hasClass("fa-angle-right"));
+                if ($(this).find('i').hasClass("fa-angle-right")) {
+                    $(this).find('i').removeClass("fa-angle-right").addClass("fa-angle-down")
+                } else {
+                    $(this).find('i').removeClass("fa-angle-down").addClass("fa-angle-right")
+                }   
+                $(this).parent().siblings().find('i').removeClass("fa-angle-right").removeClass("fa-angle-down").addClass("fa-angle-right")
+                $(this).siblings(".b").show();
+
+            });
+
+        });
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+
+    <div class="cont">
+        <div class="section">
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+            section1
+        </div>
+        <p class="b">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, ut! Quisquam, at eligendi? Optio
+            eligendi
+            ullam repellat libero inventore provident placeat quo voluptates, dolorum doloribus distinctio, ab illo
+            eaque reiciendis?</p>
+    </div>
+
+
+    <div class="cont">
+        <div class="section">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+            section2
+        </div>
+        <p class="b">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, ut! Quisquam, at eligendi? Optio
+            eligendi
+            ullam repellat libero inventore provident placeat quo voluptates, dolorum doloribus distinctio, ab illo
+            eaque reiciendis?</p>
+    </div>
+
+    <div class="cont">
+        <div class="section">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+            section3
+        </div>
+        <p class="b">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, ut! Quisquam, at eligendi? Optio
+            eligendi
+            ullam repellat libero inventore provident placeat quo voluptates, dolorum doloribus distinctio, ab illo
+            eaque reiciendis?</p>
+    </div>
+
+    <div class="cont">
+        <div class="section">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+            section4
+        </div>
+        <p class="b">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, ut! Quisquam, at eligendi? Optio
+            eligendi ullam repellat libero inventore provident placeat quo voluptates, dolorum doloribus
+            distinctio, ab illo eaque reiciendis?</p>
+    </div>
+
+
+</body>
+
+</html>

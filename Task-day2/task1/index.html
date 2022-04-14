@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task-day2</title>
+    <link rel="shortcut icon" href="./assets/images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <script src="js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            var h, m, s, c = 0;
+            $('p').hide();
+            $('p').eq(2).show();
+            $('.resume').hide();
+            $('.restart').hide();
+            var timer;
+            
+            $('.start').click(function () {
+                $('p').eq(0).show();
+                $('p').eq(2).hide();
+
+                var inputValue = $('#num').val();
+                
+                h = Math.floor(inputValue / 3600);
+                m = Math.floor((inputValue - (h * 3600)) / 60);
+                s = Math.floor((inputValue - (h * 3600) - (m * 60)));
+                c = 0;
+
+                $("th").eq(0).text(h);
+                $("th").eq(1).text(m);
+                $("th").eq(2).text(s);
+                $("th").eq(3).text(c);
+
+                startTimer();
+                console.log(inputValue, h, m, s, c);
+                $('.start').attr('disabled', true);
+            });
+
+            $('.restart').click(function () {
+                $('p').eq(0).show();
+                $('p').eq(2).hide();
+                var inputValue = $('#num').val();
+
+                h = Math.floor(inputValue / 3600);
+                m = Math.floor((inputValue - (h * 3600)) / 60);
+                s = Math.floor((inputValue - (h * 3600) - (m * 60)));
+                c = 0;
+
+                $("th").eq(0).text(h);
+                $("th").eq(1).text(m);
+                $("th").eq(2).text(s);
+                $("th").eq(3).text(c);
+
+                startTimer();
+                console.log(inputValue, h, m, s, c);
+                $('.start').show();
+                $('.restart').hide();
+            });
+
+
+            $('.reset').click(function () {
+                $('p').hide();
+                $(".tag").html("<h3>: Enter seconds ")
+                $('#num').val("");
+                $("th").text(0);
+                clearInterval(timer);
+                $('.start').show();
+                $('.restart').hide();
+                $('.resume').hide();
+                $('.start').attr('disabled', false);
+
+            });
+
+            $('.pause').click(function () {
+                $('p').hide();
+
+
+                h = $("th").eq(0).text();
+                m = $("th").eq(1).text();
+                s = $("th").eq(2).text();
+                c = $("th").eq(3).text();
+                $(".tag").html("<h3>:pause at" + h + "HH, " + m + "MM, " + s + "SS")
+                clearInterval(timer)
+
+                $('.resume').show();
+                $('.start').hide();
+                $('.restart').hide();
+            });
+
+            $('.resume').click(function () {
+                $(".tag").html("<h3> Running")
+
+                h = $("th").eq(0).text();
+                m = $("th").eq(1).text();
+                s = $("th").eq(2).text();
+                c = $("th").eq(3).text();
+                startTimer();
+
+
+                $('.resume').hide();
+                $('.start').show();
+                $('p').eq(0).show();
+            })
+
+            $('.stop').click(function () {
+                clearInterval(timer)
+                $(".tag").html("<h3>: Stopped")
+                $(".start").hide();
+                $(".resume  ").hide();
+                $(".restart").show();
+
+            });
+            function startTimer() {
+                timer = setInterval(function () {
+                    if (c > 0) {
+                        c--;
+                    } else {
+                        c = 99;
+                        if (s > 0) {
+                            s--;
+                        } else {
+                            s = 59;
+                            if (m > 0) {
+                                m--;
+                            } else {
+                                m = 59
+                                if (h > 0) {
+                                    h--;
+                                } else {
+                                    h, m, s, c = 0;
+                                }
+                            }
+                        }
+                    }
+                    if (h == 0 && m == 0 && s == 0 && c == 0) {
+                        clearInterval(timer);
+                    }
+                    $("th").eq(0).text(h);
+                    $("th").eq(1).text(m);
+                    $("th").eq(2).text(s);
+                    $("th").eq(3).text(c);
+
+                    $(".tag").html("<h3>: Running")
+                }, 10);
+            }
+        });
+    </script>
+    <!-- <script>
+        $(document).ready(function () {
+
+            $(".start").click(function () {
+                var x = $("#num").val();
+                var hour = Math.floor(x / 3600);
+                var minutes = Math.floor((x - (hour * 3600)) / 60);
+                var sec = Math.floor(x - (hour * 3600) - (minutes * 60)-1);
+                var csec = 99;
+
+                var a = setInterval(function () {
+                    $("th").eq(0).text(hour);
+                    $("th").eq(1).text(minutes);
+                    $("th").eq(2).text(sec);
+                    $("th").eq(3).text(csec);
+                    
+
+                    if (csec < 0) {
+                        csec = 99;
+                        sec--;
+                        if (sec < 0) {
+                            sec = 59;
+                            minutes--;
+                            if (minutes < 0) {
+                                minutes = 59;
+                                hour--;
+                                if (hour < 0) {
+                                    hour = 0;
+                                }
+                            }
+                        }
+                    }
+                    if(hour==0&&minutes==0&&sec==0){
+                        csec=0;
+                        return 0;
+                    }
+                    csec--;
+                }, 10);
+            });
+            $(".pause").click(function () {
+                
+            });
+        });
+    </script> -->
+</head>
+
+<body>
+
+    <div class="countdown">
+        <div class="upper">
+            <h1>Countdown</h1>
+        </div>
+        <div class="countdown-begins">
+            <table>
+                <tr>
+                    <th>00</th>
+                    <th>00</th>
+                    <th>00</th>
+                    <th>00</th>
+                </tr>
+                <tr>
+                    <td>Hours</td>
+                    <td>Minutes</td>
+                    <td>sec</td>
+                    <td>C-sec</td>
+                </tr>
+            </table>
+            <div class="enter">
+                <form>
+                    <input type="number" id="num" placeholder="enter sec manually">
+                    <div class="buttons">
+
+                        <input type="button" class="start" value="start" >
+                        <input type="button" class="restart" value="restart">
+                        <input type="button" class="resume" value="resume">
+                        <input type="button" class="pause" value="pause">
+                        <input type="button" class="stop" value="stop">
+                        <input type="button" class="reset" value="reset">
+
+                    </div>
+                </form>
+            </div>
+            <div class="tag">
+
+                <p>enter value and click on start to start</p>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
