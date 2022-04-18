@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task-day4-WizardForm</title>
+    <link rel="shortcut icon" href="./assets/images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <script src="js/jquery-3.6.0.js"></script>
+    <script src="js/wizardform.js">
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="all">
+            <div class="wizard">
+                <h1>WIZARD FORM</h1>
+            </div>
+            <div class="tab">
+                <button class="level1">Step 1</button>
+                <button class="level2">Step 2</button>
+                <button class="level3">Step 3</button>
+            </div>
+
+            <div class="entries clearfix">
+                <form class="basic-form">
+                    <div class="entry1 clearfix">
+                        <label for="fname">First name:</label>
+                        <input type="text" id="fname" name="fname" placeholder="Enter First Name"><br>
+
+                        <label for="lname">Last name:</label>
+                        <input type="text" id="lname" name="lname" placeholder="Enter Last Name"><br>
+
+                        <label for="gender">Gender</label>
+                        <input type="radio" class="gender" id="female" name="gender" value="Female">
+                        <label for="female">Female</label>
+
+                        <input type="radio" class="gender" id="male" name="gender" value="Male">
+                        <label for="male">Male</label><br>
+
+
+                    </div>
+
+                    <div class="entry2 clearfix">
+                        <label for="email">Email ID:</label>
+                        <input type="email" id="email" name="email" placeholder="Enter Email"><br>
+
+                        <label for="tel">Contact no:</label>
+                        <input type="tel" id="number" name="number" pattern="[0-9]{10}" placeholder="Enter Contact Number" minlength="10" maxlength="10"><br>
+
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" id="dob" name="dob"><br>
+
+                    </div>
+
+                    <div class="entry3 clearfix ">
+                        <label for="sports">Fav Sports:</label>
+                        <select id="sports" name="sports">
+                            <option value="cricket">Cricket</option>
+                            <option value="football">Football</option>
+                            <option value="basketball">Basketball</option>
+                            <option value="badminton">Badminton</option>
+                        </select><br>
+
+                        <label for="textarea">About Yourself:</label>
+                        <textarea type="text" id="say" name="say"
+                            placeholder="Tell us something about you...!"></textarea><br>
+
+
+                        <label for="tc">I have agreed to <span>Terms and Condition</span></label>
+                        <input type="checkbox" id="tc"><br>
+
+                    </div>
+
+                    <button type="button" value="submit" class="submit">SUBMIT</button>
+                    <button type="button" value="prev" class="prev">Prev</button>
+                    <button type="button" value="Save&Next" class="save">Save&Next</button>
+                    <button type="button" value="update" class="update">Update</button>
+                    <button type="button" value="cancel" class="cancel">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Email ID</th>
+            <th>Contact No</th>
+            <th>DOB</th>
+            <th>Sports</th>
+            <th>About You</th>
+            <th>T & C</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+
+    </table>
+</body>
+
+</html>
