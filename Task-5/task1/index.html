@@ -35,13 +35,13 @@
                 <form id="form">
                     <div class="entry1 clearfix">
                         <label for="fname">First name:</label>
-                        <input type="text" id="fname" name="fname" placeholder="Enter First Name"><br>
+                        <input type="text" id="fname" name="fname" placeholder="Enter First Name" autocomplete="off"><br>
 
                         <label for="lname">Last name:</label>
-                        <input type="text" id="lname" name="lname" placeholder="Enter Last Name"><br>
+                        <input type="text" id="lname" name="lname" placeholder="Enter Last Name" autocomplete="off"><br>
 
                         <label for="gender">Gender</label>
-                        <input type="radio" class="gender" id="female" name="gender" value="Female" checked>
+                        <input type="radio" class="gender" id="female" name="gender" value="Female" autocomplete="off" checked>
                         <label for="female">Female</label>
 
                         <input type="radio" class="gender" id="male" name="gender" value="Male">
@@ -50,20 +50,20 @@
 
                     <div class="entry2 clearfix">
                         <label for="email">Email ID:</label>
-                        <input type="text" id="email" name="email" placeholder="Enter Email" validate="email"><br>
+                        <input type="text" id="email" name="email" placeholder="Enter Email" validate="email" autocomplete="off"><br>
 
                         <label for="tel">Contact no:</label>
                         <input type="text" id="number" name="number" pattern="[0-9]{10}"
-                            placeholder="Enter Contact Number"><br>
+                            placeholder="Enter Contact Number" autocomplete="off"><br>
 
                         <label for="dob">Date of Birth:</label>
                         <input type="text" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" id="dob" name="dob" placeholder="dd-mm-yyyy" autocomplete="off"><br>
 
                         <label for="ipadd">IP Address:</label>
-                        <input type="text" id="ipadd" name="ipadd" placeholder="xxx.xxx.xxx.xxxx"><br>
+                        <input type="text" id="ipadd" name="ipadd" placeholder="xxx.xxx.xxx.xxxx" autocomplete="off"><br>
 
                         <label for="hours">For How Hany Hours?</label>
-                        <input type="text" id="hours" name="hours" placeholder="hh" validate=max_length>
+                        <input type="text" id="hours" name="hours" placeholder="hh" validate=max_length autocomplete="off">
                     </div>
 
                     <div class="entry3 clearfix ">
@@ -77,13 +77,13 @@
 
                         <label for="textarea">About Yourself:</label>
                         <textarea type="text" id="say" name="say"
-                            placeholder="Tell us something about you...!"></textarea><br>
+                            placeholder="Tell us something about you...!" autocomplete="off"></textarea><br>
 
                         <label for="zip">Zip-Code</label>
-                        <input type="text" id="zip" name="zip" placeholder="___.___" /><br>
+                        <input type="text" id="zip" name="zip" placeholder="___.___" autocomplete="off"/><br>
 
                         <label for="money">money:</label>
-                        <input type="text" id="money" name="money" placeholder="Rupees" /><br>
+                        <input type="text" id="money" name="money" placeholder="Rupees" autocomplete="off"/><br>
 
 
                         <label for="tc">I have agreed to <span>Terms and Condition</span></label>

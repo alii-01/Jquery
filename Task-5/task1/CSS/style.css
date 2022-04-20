@@ -119,3 +119,15 @@ table{
   color:red;
   font-size: 16px;
 }
+.all{
+  background-color:aliceblue;
+}
+.prev,
+.save,
+.submit,
+.update,
+.cancel{
+  background-color: wheat;
+  border: 1px solid wheat;
+  
+}

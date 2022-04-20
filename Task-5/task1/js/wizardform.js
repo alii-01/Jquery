@@ -12,7 +12,7 @@ $(document).ready(function () {
         $(this).valid();
     })
     $("#dob").inputmask()
-    $("#number").inputmask({ mask: "999 999 9999" });
+    $("#number").inputmask({ mask: "9999999999" });
     $("#zip").inputmask("999-999");
     $("#money").inputmask({
         alias: "indianns",
@@ -118,6 +118,7 @@ $(document).ready(function () {
             // },
             number: {
                 required: true,
+                regex: /^[0-9]{10}$/,
             },
             ipadd: {
                 required: true,
