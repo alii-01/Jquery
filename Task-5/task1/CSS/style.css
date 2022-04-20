@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,400;1,600&display=swap');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+
+/* Global Declarations */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Titillium Web', sans-serif;
+  color: #000;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.clearfix:before, .clearfix:after {
+  width: 100%;
+  display: table;
+  content: '';
+}
+.container{
+  max-width: 50%;
+  width: 100%;  
+  margin: 0 auto;
+}
+.entries{
+  text-align: center;
+  padding-top: 30px;
+}
+.wizard{
+  text-align: center;
+}
+.all{
+  border: 1px solid black;
+  padding: 15px;
+  margin-bottom: 50px;
+}
+.buttons{
+  text-align: center;
+}
+
+.tab {
+  overflow: hidden;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 284px;
+
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 28px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+label{
+  font-size: 20px;
+}
+
+input#fname,
+input#lname,
+input#email,
+input#number,
+input#dob,
+input#hours,
+input#ipadd,
+input#zip,
+input#money{
+  font-size: 20px;
+  margin: 0px 15px 30px 0px;
+}
+textarea{
+  font-size: 20px;
+}
+input#zip {
+  margin-top: 20px;
+}
+button.save,
+button.save1,
+button.submit,
+button.update,
+button.cancel{ 
+  padding: 10px 20px;
+  text-transform: uppercase;
+  float: right;
+}
+button.prev,
+button.prev1{
+  padding: 10px 20px;
+  text-transform: uppercase;
+  float: left;
+}
+select{
+  font-size: 20px;
+  margin: 0px 15px 30px 0px;
+  padding: 0px 160px 0 0;
+}
+span{
+  color: blue;
+}
+th{
+  padding: 0px 10px;
+}
+table{
+  margin: 0 auto;
+  width: 80%;
+  text-align: center;
+}
+.error{
+  color:red;
+  font-size: 16px;
+}

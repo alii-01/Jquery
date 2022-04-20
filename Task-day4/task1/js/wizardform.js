@@ -2,10 +2,9 @@ $(document).ready(function () {
     $(".entries div").hide();
     $(".entry1").eq(0).show();
     $(".prev,.submit,.update,.cancel").hide();
-    var x, length;
-    var i = 1;
-    var s = false;
-    $(".tab button").eq(0).css({ "background-color": "yellow" })
+    var x, length, i=1, s=false;
+    $(".tab button").eq(0).css({ "background-color": "blanchedalmond" })
+
     /*------------------for Nav-Tab---------------------*/
 
     $(".tab button").click(function () {
@@ -15,8 +14,7 @@ $(document).ready(function () {
         $(".entries div").eq(x).show();
         // console.log(length);
         $(".tab button").css({ "background-color": "white" })
-        $(".tab button").eq(x).css({ "background-color": "yellow" })
-        
+        $(".tab button").eq(x).css({ "background-color": "blanchedalmond" })
         if (x == 0) {
             // console.log(x);
             $(".prev,.submit").hide();
@@ -41,7 +39,7 @@ $(document).ready(function () {
         $(".entries div").hide();
         if (x == null) {
             $(".tab button").css({ "background-color": "white" })
-            $(".tab button").eq(x).css({ "background-color": "yellow" })
+            $(".tab button").eq(x).css({ "background-color": "blanchedalmond" })
             x = 0;
         }
         x++;
@@ -55,7 +53,7 @@ $(document).ready(function () {
         $(".prev").show();
         boolean();
         $(".tab button").css({ "background-color": "white" })
-        $(".tab button").eq(x).css({ "background-color": "yellow" })
+        $(".tab button").eq(x).css({ "background-color": "blanchedalmond" })
     });
 
     /*----------------for previous-----------------------*/
@@ -71,7 +69,7 @@ $(document).ready(function () {
         $(".submit").hide();
         boolean();
         $(".tab button").css({ "background-color": "white" })
-        $(".tab button").eq(x).css({ "background-color": "yellow" })
+        $(".tab button").eq(x).css({ "background-color": "blanchedalmond" })
     });
 
     /*-----------------Submit button----------------------*/
@@ -92,7 +90,7 @@ $(document).ready(function () {
         });
         x = 0;
         $(".tab button").css({ "background-color": "white" });
-        $(".tab button").eq(x).css({ "background-color": "yellow" });
+        $(".tab button").eq(x).css({ "background-color": "blanchedalmond" });
         return (x);
     });
 

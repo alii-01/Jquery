@@ -5,10 +5,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task-day4-WizardForm</title>
+    <title>Task-day4-WizardForm/Validation</title>
     <link rel="shortcut icon" href="./assets/images/icon.png" type="image/png" />
     <link rel="stylesheet" href="./CSS/style.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
     <script src="js/jquery-3.6.0.js"></script>
+    <script src ="./js/jquery.inputmask.js"></script>
+    <script src="./js/jquery.validate.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src="js/wizardform.js">
     </script>
 
@@ -27,7 +32,7 @@
             </div>
 
             <div class="entries clearfix">
-                <form class="basic-form">
+                <form id="form">
                     <div class="entry1 clearfix">
                         <label for="fname">First name:</label>
                         <input type="text" id="fname" name="fname" placeholder="Enter First Name"><br>
@@ -47,15 +52,20 @@
 
                     <div class="entry2 clearfix">
                         <label for="email">Email ID:</label>
-                        <input type="email" id="email" name="email" placeholder="Enter Email"><br>
+                        <input type="text" id="email" name="email" placeholder="Enter Email" validate="email"><br>
 
                         <label for="tel">Contact no:</label>
-                        <input type="tel" id="number" name="number" pattern="[0-9]{10}"
-                            placeholder="Enter Contact Number" minlength="10" maxlength="10"><br>
+                        <input type="text" id="number" name="number" pattern="[0-9]{10}"
+                            placeholder="Enter Contact Number"><br>
 
                         <label for="dob">Date of Birth:</label>
-                        <input type="date" id="dob" name="dob"><br>
+                        <input type="text" id="dob" name="dob" placeholder="dd-mm-yyyy" autocomplete="off"><br>
 
+                        <label for="ipadd">IP Address:</label>
+                        <input type="text" id="ipadd" name="ipadd" placeholder="xxx.xxx.xxx.xxxx"><br>
+
+                        <label for="hours">For How Hany Hours?</label>
+                        <input type="text" id="hours" name="hours" placeholder="hh" validate=max_length>
                     </div>
 
                     <div class="entry3 clearfix ">
@@ -71,11 +81,17 @@
                         <textarea type="text" id="say" name="say"
                             placeholder="Tell us something about you...!"></textarea><br>
 
+                        <label for="zip">Zip-Code</label>
+                        <input type="text" id="zip" name="zip" placeholder="___.___" /><br>
+
+                        <label for="money">money:</label>
+                        <input type="text" id="money" name="money" placeholder="Rupees" /><br>
+
 
                         <label for="tc">I have agreed to <span>Terms and Condition</span></label>
                         <input type="checkbox" id="tc"><br>
 
-                        
+
 
                     </div>
 
@@ -97,8 +113,12 @@
             <th>Email ID</th>
             <th>Contact No</th>
             <th>DOB</th>
+            <th>IP</th>
+            <th>Hours</th>
             <th>Sports</th>
             <th>About You</th>
+            <th>Zip-Code</th>
+            <th>Money</th>
             <th>T & C</th>
             <th>Edit</th>
             <th>Delete</th>
