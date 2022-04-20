@@ -14,6 +14,7 @@ $(document).ready(function () {
         alias : "indianns",
         greedy:false
     })
+    
     $("#ipadd").inputmask({
         alias:"ip",
         greedy:false
