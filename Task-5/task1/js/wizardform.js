@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $(".entries div").hide();
     $(".entry1").eq(0).show();
     $(".prev,.submit,.update,.cancel").hide();
@@ -6,20 +7,24 @@ $(document).ready(function () {
     $(".tab button").eq(0).css({ "background-color": "wheat" })
     $("#dob").datepicker({
         dateFormat: 'dd-mm-yy',
-        maxDate: '-1d',
+        maxDate: '-1d'
+    }).on("change", function(){
+        $(this).valid();
     })
-    $("#number").inputmask({mask: "999 999 9999"});
+    $("#dob").inputmask()
+    $("#number").inputmask({ mask: "999 999 9999" });
     $("#zip").inputmask("999-999");
     $("#money").inputmask({
-        alias : "indianns",
-        greedy:false
+        alias: "indianns",
+        greedy: false
     })
-    
     $("#ipadd").inputmask({
-        alias:"ip",
-        greedy:false
+        alias: "ip",
+        greedy: false
     });
-
+    $("#dob").on('keydown', function() {
+       return false;
+    });
     /*------------------for Nav-Tab---------------------*/
 
     $(".tab button").click(function () {
@@ -27,25 +32,20 @@ $(document).ready(function () {
         length = $(".entries div").length;
         $(".entries div").hide();
         $(".entries div").eq(x).show();
-        // console.log(length);
         $(".tab button").css({ "background-color": "white" })
         $(".tab button").eq(x).css({ "background-color": "wheat" })
         if (x == 0) {
-            // console.log(x);
             $(".prev,.submit").hide();
             $(".save").show();
         }
         else if (length == x + 1) {
-            // console.log(x);
             $(".save").hide();
             $(".submit,.prev").show();
         }
         else {
-            // console.log(x);
             $(".save,.prev").show();
             $(".submit").hide();
         }
-
         boolean();
     });
 
@@ -59,8 +59,6 @@ $(document).ready(function () {
             x = 0;
         }
         x++;
-
-        // console.log(x)
         length = $(".entries div").length;
         if (x == length - 1) {
             $(".save").hide();
@@ -106,7 +104,6 @@ $(document).ready(function () {
             email: {
                 required: true,
                 email: true
-                // regex: /^[a-zA-Z]+[@][a-zA-Z]+[.][a-z]+$/
             },
             fname: {
                 required: true,
@@ -116,18 +113,18 @@ $(document).ready(function () {
                 required: true,
                 regex: /^[a-zA-Z]/g
             },
-            gender: {
-                required: true
-            },
+            // gender: {
+            //     required: true
+            // },
             number: {
                 required: true,
             },
             ipadd: {
                 required: true,
+                IP4Checker: true
             },
             dob: {
                 required: true,
-                // regex: "^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$"
             },
             say: {
                 required: true,
@@ -148,7 +145,7 @@ $(document).ready(function () {
             fname: "please enter your name",
             lname: "please enter your last name",
             email: "Enter valid email",
-            hour: "Enter hours between 1-24"
+            hours: "Enter hours between 1-24"
         }
     });
 
@@ -160,7 +157,7 @@ $(document).ready(function () {
             value();
             details();
             $('#fname,#lname,#email,#number,#dob,#ipadd,#hours,#sports,#say,#zip,#money').val("");
-            $('#female,#male,#tc').prop("checked", false);
+            $('#tc').prop("checked", false);
             $(".entries div").hide();
             $(".entries div").eq(0).show();
             $(".prev,.submit").hide();
@@ -194,8 +191,7 @@ $(document).ready(function () {
             x = indexx;
             $(".tab button").css({ "background-color": "white" });
             $(".tab button").eq(x).css({ "background-color": "wheat" });
-            $(".error").text().css({"color":"red"});
-
+          
         }
     });
 
@@ -238,6 +234,7 @@ $(document).ready(function () {
     /*-------------------set values --------------------*/
 
     $('table').on('click', '.edit', function () {
+        $(this).closest('tr').find('td').eq(15).find("button.dlt").attr("disabled", true);
         i = $(this).closest('tr').find('td').eq(0).text();
         fname = $(this).closest('tr').find('td').eq(1).text();
         lname = $(this).closest('tr').find('td').eq(2).text();
@@ -276,18 +273,22 @@ $(document).ready(function () {
         else {
             $("#tc").prop("checked", false);
         }
+
         $(".update,.cancel").show();
         s = true;
         boolean();
-        $(".error").text("").css({"color":"black"});
-        // $(".error").hide();
-        
+
+        $(".error").text("").css({ "color": "black" });
     });
+    $.validator.addMethod('IP4Checker', function (value) {
+        return value.match(/^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/);
+    }, 'Invalid IP address');
 
     /*-------------------for update--------------------*/
     /*--------------------change value -------------------*/
 
     $('.update').click(function () {
+
         if ($("#form").valid() == true) {
             value();
             $('tr').find(`.serial:contains(${i})`).siblings().eq(0).text(fname);
@@ -304,7 +305,8 @@ $(document).ready(function () {
             $('tr').find(`.serial:contains(${i})`).siblings().eq(11).text(money);
             $('tr').find(`.serial:contains(${i})`).siblings().eq(12).text(tc);
             $('#fname,#lname,#email,#number,#dob,#ipadd,#hours,#sports,#say,#zip,#money').val("");
-            $('#female,#male,#tc').prop("checked", false);
+            $('#tc').prop("checked", false);
+            $("button.dlt").attr("disabled", false);
             $(".update, .cancel").hide();
             $(".submit").show();
             s = false;
@@ -339,16 +341,19 @@ $(document).ready(function () {
             $(".tab button").css({ "background-color": "white" });
             $(".tab button").eq(x).css({ "background-color": "wheat" });
         }
+
     });
 
     /*---------------cancel------------------------*/
 
     $('.cancel').click(function () {
-
-        $('#fname,#lname,#email,#number,#dob,#sports,#say').val("");
-        $('#female,#male,#tc').prop("checked", false);
+        $("button.dlt").attr("disabled", false);
+        $('#fname,#lname,#email,#number,#dob,#ipadd,#hours,#sports,#say,#zip,#money').val("");
+        $('#tc').prop("checked", false);
         $(".update, .cancel").hide();
         $(".submit").show();
+        $(".entries div").hide();
+        $(".entries div").eq(0).show();
         s = false;
         boolean();
     });
