@@ -5,12 +5,18 @@ $(document).ready(function () {
     $(".prev,.submit,.update,.cancel").hide();
     var x, length, i = 1, s = false;
     $(".tab button").eq(0).css({ "background-color": "wheat" })
+    // datepicker
     $("#dob").datepicker({
         dateFormat: 'dd-mm-yy',
         maxDate: '-1d'
-    }).on("change", function(){
+    }).on("change", function () {
         $(this).valid();
     })
+    // disallowing keyboard on DOB
+    $("#dob").on('keydown', function () {
+        return false;
+    });
+    // masking for dob,number,zip,money,ipaddress
     $("#dob").inputmask()
     $("#number").inputmask({ mask: "9999999999" });
     $("#zip").inputmask("999-999");
@@ -22,9 +28,7 @@ $(document).ready(function () {
         alias: "ip",
         greedy: false
     });
-    $("#dob").on('keydown', function() {
-       return false;
-    });
+    
     /*------------------for Nav-Tab---------------------*/
 
     $(".tab button").click(function () {
@@ -32,7 +36,7 @@ $(document).ready(function () {
         length = $(".entries div").length;
         $(".entries div").hide();
         $(".entries div").eq(x).show();
-        $(".tab button").css({ "background-color": "white" })
+        $(".tab button").css({ "background-color": "aliceblue" })
         $(".tab button").eq(x).css({ "background-color": "wheat" })
         if (x == 0) {
             $(".prev,.submit").hide();
@@ -46,7 +50,7 @@ $(document).ready(function () {
             $(".save,.prev").show();
             $(".submit").hide();
         }
-        boolean();
+        editworking();
     });
 
     /*------------------for save and next button---------------------*/
@@ -66,7 +70,7 @@ $(document).ready(function () {
         }
         $(".entries div").eq(x).show();
         $(".prev").show();
-        boolean();
+        editworking();
         $(".tab button").css({ "background-color": "white" })
         $(".tab button").eq(x).css({ "background-color": "wheat" })
     });
@@ -82,7 +86,7 @@ $(document).ready(function () {
         $(".entries div").eq(x).show();
         $(".save").show();
         $(".submit").hide();
-        boolean();
+        editworking();
         $(".tab button").css({ "background-color": "white" })
         $(".tab button").eq(x).css({ "background-color": "wheat" })
     });
@@ -93,111 +97,14 @@ $(document).ready(function () {
         function (value, element, regexp) {
             var re = new RegExp(regexp);
             return this.optional(element) || re.test(value);
-        },
-        "Please check your input."
-    );
+        },"Please check your input.");
 
-    // Validator
-    $("#form").validate({
-        ignore: [],
-        rules: {
-            email: {
-                required: true,
-                email: true
-            },
-            fname: {
-                required: true,
-                regex: /^[a-zA-Z]/g
-            },
-            lname: {
-                required: true,
-                regex: /^[a-zA-Z]/g
-            },
-            // gender: {
-            //     required: true
-            // },
-            number: {
-                required: true,
-                regex: /^[0-9]{10}$/,
-            },
-            ipadd: {
-                required: true,
-                IP4Checker: true
-            },
-            dob: {
-                required: true,
-            },
-            say: {
-                required: true,
-                regex: /^[a-zA-Z]/g
-            },
-            hours: {
-                required: true,
-                range: [1, 24]
-            },
-            zip: {
-                required: true
-            },
-            money: {
-                required: true
-            }
-        },
-        messages: {
-            fname: "please enter your name",
-            lname: "please enter your last name",
-            email: "Enter valid email",
-            hours: "Enter hours between 1-24"
-        }
-    });
-
-    /*-----------------Submit button---------------*/
-
-    $("button.submit").click(function () {
-        console.log($("#form").valid());
-        if ($("#form").valid() == true) {
-            value();
-            details();
-            $('#fname,#lname,#email,#number,#dob,#ipadd,#hours,#sports,#say,#zip,#money').val("");
-            $('#tc').prop("checked", false);
-            $(".entries div").hide();
-            $(".entries div").eq(0).show();
-            $(".prev,.submit").hide();
-            $(".save").show();
-            $('table tr').each(function (x) {
-                $($(this).find('td')[0]).html(x);
-                x++;
-                i = x;
-            });
-            x = 0;
-            $(".tab button").css({ "background-color": "white" });
-            $(".tab button").eq(x).css({ "background-color": "wheat" });
-        }
-        else {
-            length = $(".entries div").length;
-            var indexx = $(".entries div").has('input.error, textarea.error').eq(0).index();
-            $(".entries div").hide();
-            $(".entries div").has('input.error, textarea.error').eq(0).show()
-            if (indexx == 0) {
-                $(".save").show();
-                $(".prev,.submit").hide();
-            }
-            else if (indexx + 1 == length) {
-                $(".submit,.prev").show();
-                $(".save").hide();
-            }
-            else {
-                $(".save,.prev").show();
-                $(".submit").hide();
-            }
-            x = indexx;
-            $(".tab button").css({ "background-color": "white" });
-            $(".tab button").eq(x).css({ "background-color": "wheat" });
-          
-        }
-    });
+    // Create Ipaddress Method
+    $.validator.addMethod('IP4Checker', function (value) {
+        return value.match(/^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/);
+    }, 'Invalid IP address');
 
     /*----------------function to append values-----------------------*/
-
     function details() {
         $("table").append(`<tr>
         <td class = "serial">${i}</td>
@@ -220,22 +127,66 @@ $(document).ready(function () {
         i++;
     }
 
-    /*-----------------delete button----------------------*/
+    /*-----------------Submit button---------------*/
+    $("button.submit").click(function () {
+        console.log($("#form").valid());
+        if ($("#form").valid() == true) {
+            value();
+            details();
+            $('#fname,#lname,#email,#number,#dob,#ipadd,#hours,#sports,#say,#zip,#money').val("");
+            $('#tc').prop("checked", false);
+            $(".entries div").hide();
+            $(".entries div").eq(0).show();
+            $(".prev,.submit").hide();
+            $(".save").show();
+            $('table tr').each(function (x) {
+                $($(this).find('td')[0]).html(x);
+                x++;
+                i = x;
+            });
+            x = 0;
+            backroundnav();
+        }
+        else {
+            length = $(".entries div").length;
+            var indexx = $(".entries div").has('input.error, textarea.error').eq(0).index();
+            $(".entries div").hide();
+            $(".entries div").has('input.error, textarea.error').eq(0).show()
+            if (indexx == 0) {
+                $(".save").show();
+                $(".prev,.submit").hide();
+            }
+            else if (indexx + 1 == length) {
+                $(".submit,.prev").show();
+                $(".save").hide();
+            }
+            else {
+                $(".save,.prev").show();
+                $(".submit").hide();
+            }
+            x = indexx;
+            backroundnav();
+        }
+    });
 
+    /*-----------------delete button----------------------*/
     $('table').on('click', '.dlt', function () {
-        $(this).closest('tr').remove();
+  
+        confirm("You sure?") ? $(this).closest("tr").remove():" ";
         $('table tr').each(function (x) {
             $($(this).find('td')[0]).html(x);
             x++;
             i = x;
         });
+       
     });
 
     /*-------------------edit button--------------------*/
     /*-------------------set values --------------------*/
-
     $('table').on('click', '.edit', function () {
+        $("button.dlt").attr("disabled", false);
         $(this).closest('tr').find('td').eq(15).find("button.dlt").attr("disabled", true);
+
         i = $(this).closest('tr').find('td').eq(0).text();
         fname = $(this).closest('tr').find('td').eq(1).text();
         lname = $(this).closest('tr').find('td').eq(2).text();
@@ -274,20 +225,13 @@ $(document).ready(function () {
         else {
             $("#tc").prop("checked", false);
         }
-
         $(".update,.cancel").show();
         s = true;
-        boolean();
-
+        editworking();
         $(".error").text("").css({ "color": "black" });
     });
-    $.validator.addMethod('IP4Checker', function (value) {
-        return value.match(/^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/);
-    }, 'Invalid IP address');
 
     /*-------------------for update--------------------*/
-    /*--------------------change value -------------------*/
-
     $('.update').click(function () {
 
         if ($("#form").valid() == true) {
@@ -311,14 +255,13 @@ $(document).ready(function () {
             $(".update, .cancel").hide();
             $(".submit").show();
             s = false;
-            boolean();
+            editworking();
             $(".entries div").hide();
             $(".entries div").eq(0).show();
             $(".prev,.submit").hide();
             $(".save").show();
             x = 0;
-            $(".tab button").css({ "background-color": "white" });
-            $(".tab button").eq(x).css({ "background-color": "wheat" });
+            backroundnav();
         }
         else {
             length = $(".entries div").length;
@@ -339,26 +282,29 @@ $(document).ready(function () {
                 $(".submit,.cancel,.update").hide();
             }
             x = indexx;
-            $(".tab button").css({ "background-color": "white" });
-            $(".tab button").eq(x).css({ "background-color": "wheat" });
+            backroundnav();
         }
-
     });
 
     /*---------------cancel------------------------*/
-
     $('.cancel').click(function () {
         $("button.dlt").attr("disabled", false);
         $('#fname,#lname,#email,#number,#dob,#ipadd,#hours,#sports,#say,#zip,#money').val("");
         $('#tc').prop("checked", false);
-        $(".update, .cancel").hide();
-        $(".submit").show();
+        x = 0
+        $(".update, .cancel, .prev").hide();
+        $(".save").show();
         $(".entries div").hide();
         $(".entries div").eq(0).show();
+        // $(".submit").show();
         s = false;
-        boolean();
+        editworking();
+        backroundnav();
+        return x;
     });
-    function boolean() {
+
+/*------------for checking navigation and edit is working properly or not--------------------*/
+    function editworking() {
         if (s == true) {
             if (length == x + 1) {
                 $(".update,.cancel").show();
@@ -370,6 +316,7 @@ $(document).ready(function () {
             }
         }
     }
+
     function value() {
         fname = $('#fname').val();
         lname = $('#lname').val();
@@ -391,6 +338,73 @@ $(document).ready(function () {
             tc = "Disagree";
         }
     }
+
+    // Seting nav-tab color
+    function backroundnav() {
+        $(".tab button").css({ "background-color": "aliceblue" });
+        $(".tab button").eq(x).css({ "background-color": "wheat" });
+    }
+  
+    // Validator
+    $("#form").validate({
+        ignore: [],
+        rules: {
+            email: {
+                required: true,
+                regex: /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+            },
+            fname: {
+                required: true,
+                regex: /^[a-zA-Z]+$/g
+            },
+            lname: {
+                required: true,
+                regex: /^[a-zA-Z]+$/g
+            },
+            number: {
+                required: true, 
+                regex: /^[0-9]{10}$/,
+            },
+            ipadd: {
+                required: true,
+                IP4Checker: true
+            },
+            dob: {
+                required: true,
+            },
+            say: {
+                required: true,
+                regex: /^[a-zA-Z0-9]/g
+            },
+            hours: {
+                required: true,
+                range: [1, 24]
+            },
+            zip: {
+                required: true,
+                regex: /^\d{3}[-\s]?(?:\d{3})?$/gm
+            
+            },
+            money: {
+                required: true
+            },
+            tc:{
+                required:true
+            }
+        },
+        messages: {
+            fname: "please enter your name",
+            lname: "please enter your last name",
+            email:{regex: "Enter valid email"}  ,
+            number:{ regex:"Enter valid number"},
+            zip:{
+                regex: "Enter correct zip"
+            },
+            dob:"please enter your BirthDate",
+            hours: "Enter hours between 1-24",
+            tc: "Agree to our Terms and conditions"
+        }
+    });
 });
 
     // $("#fname").click(function () {

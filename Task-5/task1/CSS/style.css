@@ -12,6 +12,7 @@ body {
   color: #000;
   font-size: 16px;
   line-height: 1.5;
+
 }
 .clearfix:before, .clearfix:after {
   width: 100%;
@@ -31,7 +32,7 @@ body {
   text-align: center;
 }
 .all{
-  border: 1px solid black;
+  border: 10px solid #00000047;
   padding: 15px;
   margin-bottom: 50px;
 }
@@ -64,6 +65,7 @@ body {
 }
 label{
   font-size: 20px;
+  margin-right: 20px;
 }
 
 input#fname,
@@ -75,8 +77,8 @@ input#hours,
 input#ipadd,
 input#zip,
 input#money{
-  font-size: 20px;
-  margin: 0px 15px 30px 0px;
+  font-size: 17px;
+  margin: 0px 0px 20px 0px;
 }
 textarea{
   font-size: 20px;
@@ -101,7 +103,7 @@ button.prev1{
 }
 select{
   font-size: 20px;
-  margin: 0px 15px 30px 0px;
+  margin: 0px 15px 20px 0px;
   padding: 0px 160px 0 0;
 }
 span{
@@ -119,9 +121,10 @@ table{
   color:red;
   font-size: 16px;
 }
-.all{
-  background-color:aliceblue;
-}
+/* .all{
+  background-image:url(../Assets/Images/harry.jpg) ;
+  background-size: cover;
+} */
 .prev,
 .save,
 .submit,
@@ -129,5 +132,24 @@ table{
 .cancel{
   background-color: wheat;
   border: 1px solid wheat;
-  
+  margin: 1px 2px;
+}
+label[for=dob]{
+  margin-right: 10px;
+}
+textarea::placeholder{
+  font-size: 12px;
+}
+label[for=textarea]{
+  vertical-align: top;
+}
+.all{
+  background-color: aliceblue;
+}
+.wizard h1{
+  text-shadow: 2px 2px lightseagreen;
+}
+.tab button{
+
+  text-shadow: 1px 1px cornflowerblue;
 }
