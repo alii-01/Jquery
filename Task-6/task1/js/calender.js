@@ -39,7 +39,6 @@ $(document).ready(function () {
 
     for (let k = 1970; k < 2070; k++) {
         $("#goyear").append(`<option value="${k}">${k}</option>`)
-        console.log(year)
         $("#goyear").val(year);
     }
 
@@ -47,12 +46,9 @@ $(document).ready(function () {
         $("#gomonth").append(`<option value="${currentmonth[k]}">${currentmonth[k]}</option>`)
         $("#gomonth").val(currentmonth[month]);
     }
-    for (k = 1; k < 32; k++) {
-        $("#godate").append(`<option>${k}</option>`)
+    for (k = 1; k < 31; k++) {
+        $("#godate").append(`<option value ="${k}">${k}</option>`)
     }
-
-
-
 
     function cal() {
 
@@ -103,16 +99,17 @@ $(document).ready(function () {
 
     cal(bool);
 
-    $("#goyear", "#gomonth").change(function () {
+    $("#gomonth").change(function () {
         x = currentmonth.indexOf($("#gomonth").val());
         $("#godate").find("option").remove();
-        var totdays = new Date($("#goyear").val(), x + 1, 0).getDate();
+        totdays = new Date($("#goyear").val(), x + 1, 0).getDate();
         for (var k = 0; k <= totdays; k++) {
             if(k==0){
                 $("#godate").append(`<option>Date</option>`)
             }
             $("#godate").append(`<option value="${k}">${k}</option>`)
         }
+        console.log(totdays);
     })
 
     $("#finddate").click(function () {
@@ -128,7 +125,6 @@ $(document).ready(function () {
             $(".appenddays").empty();
             color_part=date;
             cal();
-            
         }
         if (bool == false) {
             d.setMonth(x)
@@ -136,18 +132,14 @@ $(document).ready(function () {
             $(".appenddays").empty();
             cal();
             color_part = 0;
-
         }
     });
-
-
 
     $(".gotoday").click(function () {
         d = new Date();
         clearcal();
         cal();
         color_part=0;
-
     })
 
 });
