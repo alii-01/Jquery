@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,400;1,600&display=swap');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+
+/* Global Declarations */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Titillium Web', sans-serif;
+  color: #000;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.clearfix:before, .clearfix:after {
+  width: 100%;
+  display: table;
+  content: '';
+}
+.container{
+  max-width: 50%;
+  width: 100%;  
+  margin: 0 auto;
+}
+.heading{
+  text-align: center;
+}
+table{
+
+  width: 100%;
+  text-align: center;
+}
+/* .fa{
+  display: inline-block;
+} */
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+.dispmonth{
+  width: 88%;
+  text-align: center;
+}
+h2{
+  margin: 0 auto;
+  line-height: 26px;
+  color: white;
+}
+.month{
+  background-color: #bb8219;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+i.fa.fa-arrow-left{
+  padding-left: 40px;
+  color: white;
+}
+i.fa.fa-arrow-right{
+  padding-right: 40px;
+  color: white;
+
+}
+.today{
+  background-color: #bb8219;
+}
+.findate{
+  background-color:#ff81009e;
+}
+td{
+  background-color:white
+}
+/* td:hover{
+  background-color: green;
+} */
+.cal{
+  height: 240px;
+}
+button,
+select{
+  padding: 10px 20px;
+  background-color: burlywood;
+  border: 1px solid burlywood;
+  border: 1px solid #d38f37;
+    border-radius: 15px;
+    margin: 0px 40px;
+}
+.lowbtn{
+  text-align: center;
+}
